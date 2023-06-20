@@ -1,14 +1,23 @@
 package com.portfolio.ffperezs.dto;
 
+import javax.validation.constraints.NotBlank;
+
 public class PersonaDto {
-    
+    @NotBlank
     private String nombre;
+    @NotBlank
     private String apellido;
+    @NotBlank
     private String posicion;
+    @NotBlank
     private String sobreMi;
+    @NotBlank
     private String img;
+    @NotBlank
     private String banner;    
+    @NotBlank
     private String linkW;
+    @NotBlank
     private String linkE;
     
     

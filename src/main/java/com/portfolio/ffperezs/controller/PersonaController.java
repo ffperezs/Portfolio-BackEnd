@@ -8,9 +8,9 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +39,7 @@ public class PersonaController {
     
     
     //Buscar por ID
-    @GetMapping("/id/{id}")
+    @GetMapping("/detail/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") int id){
         if(!personaService.existsById(id))
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
@@ -57,25 +57,25 @@ public class PersonaController {
         Persona persona = personaService.findPersonaById(id);
         return new ResponseEntity<>(persona, HttpStatus.OK);
     }*/
-
-    /*
-    //Crear (por el momento no la usamos porque ya la persona la tenemos creada)
+    
+    //Crear
     //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<Persona> addPersona(@RequestBody PersonaDto personaDto) {
-        Persona newPersona = new Persona (
-                personaDto.getNombre(),
+    public ResponseEntity<?> addPersona(@RequestBody PersonaDto personaDto){
+        
+        Persona persona = new Persona(
+                personaDto.getNombre(), 
                 personaDto.getApellido(),
                 personaDto.getPosicion(),
                 personaDto.getSobreMi(),
                 personaDto.getImg(),
                 personaDto.getBanner(),
                 personaDto.getLinkW(),
-                personaDto.getLinkE()
-        );
-        personaService.addPersona(newPersona);
-        return new ResponseEntity<>(newPersona,HttpStatus.OK);
-    }*/
+                personaDto.getLinkE());
+        
+        personaService.save(persona);
+        return new ResponseEntity(new Mensaje("La Persona ha sido creada Correctamente"), HttpStatus.OK);           
+    }
     
     
     //Editar

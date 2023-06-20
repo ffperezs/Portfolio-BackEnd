@@ -23,6 +23,7 @@ public class PersonaService {
     public Persona addPersona(Persona persona) {
         return personaRepository.save(persona);
     }
+    
 
     public List<Persona> findPersona() {
         return personaRepository.findAll();
