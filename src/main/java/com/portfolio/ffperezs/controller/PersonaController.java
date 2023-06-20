@@ -58,7 +58,7 @@ public class PersonaController {
         return new ResponseEntity<>(persona, HttpStatus.OK);
     }*/
     
-    //Crear
+    /*//Crear
     //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> addPersona(@RequestBody PersonaDto personaDto){
@@ -75,7 +75,7 @@ public class PersonaController {
         
         personaService.save(persona);
         return new ResponseEntity(new Mensaje("La Persona ha sido creada Correctamente"), HttpStatus.OK);           
-    }
+    }*/
     
     
     //Editar
