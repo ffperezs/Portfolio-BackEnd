@@ -7,10 +7,10 @@ import com.portfolio.ffperezs.service.PersonaService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/persona")
-@CrossOrigin(origins = {"https://ffperezs.web.app","http://localhost:4200"})
+@CrossOrigin(origins = {"https://Portfolio-ffperezs.web.app","http://localhost:4200"})
 public class PersonaController {
     private final PersonaService personaService;
 
@@ -79,7 +79,7 @@ public class PersonaController {
     
     
     //Editar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> editPersona (@PathVariable("id") int id, @RequestBody PersonaDto personaDto){
         //Validamos si existe el ID

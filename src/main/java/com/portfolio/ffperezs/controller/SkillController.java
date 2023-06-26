@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/skill")
-@CrossOrigin(origins = {"https://ffperezs.web.app","http://localhost:4200"})
+@CrossOrigin(origins = {"https://Portfolio-ffperezs.web.app","http://localhost:4200"})
 public class SkillController {
 
     private final SkillService skillService;
@@ -62,7 +62,7 @@ public class SkillController {
 
     
     //Crear
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Skill> addSkill(@RequestBody SkillDto skillDto) {
         Skill newSkill = new Skill (
@@ -77,7 +77,7 @@ public class SkillController {
 
 
     //Editar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> editSkill (@PathVariable("id") int id, @RequestBody SkillDto skillDto){
         if(!skillService.existsById(id)){
@@ -97,7 +97,7 @@ public class SkillController {
 
     
     //Borrar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteSkill(@PathVariable("id") int id) {
         if(!skillService.existsById(id)){

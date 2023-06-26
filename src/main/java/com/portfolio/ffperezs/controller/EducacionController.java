@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/educacion")
-@CrossOrigin(origins = {"https://ffperezs.web.app","http://localhost:4200"})
+@CrossOrigin(origins = {"https://Portfolio-ffperezs.web.app","http://localhost:4200"})
 public class EducacionController {
 
     private final EducacionService educacionService;
@@ -62,7 +62,7 @@ public class EducacionController {
 
     
     //Crear
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Educacion> addEducacion(@RequestBody EducacionDto educacionDto) {
         Educacion newEducacion = new Educacion (
@@ -79,7 +79,7 @@ public class EducacionController {
 
 
     //Editar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> editEducacion (@PathVariable("id") int id, @RequestBody EducacionDto educacionDto){
         //Validamos si existe el ID
@@ -103,7 +103,7 @@ public class EducacionController {
 
     
     //Borrar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEducacion(@PathVariable("id") int id) {
         if(!educacionService.existsById(id)){

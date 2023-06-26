@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/proyecto")
-@CrossOrigin(origins = {"https://ffperezs.web.app","http://localhost:4200"})
+@CrossOrigin(origins = {"https://Portfolio-ffperezs.web.app","http://localhost:4200"})
 public class ProyectoController {
 
     private final ProyectoService proyectoService;
@@ -62,7 +62,7 @@ public class ProyectoController {
 
     
     //Crear
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Proyecto> addProyecto(@RequestBody ProyectoDto proyectoDto) {
         Proyecto newProyecto = new Proyecto (
@@ -78,7 +78,7 @@ public class ProyectoController {
 
 
     //Editar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> editProyecto (@PathVariable("id") int id, @RequestBody ProyectoDto proyectoDto){
         if(!proyectoService.existsById(id)){
@@ -98,7 +98,7 @@ public class ProyectoController {
 
     
     //Borrar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteProyecto(@PathVariable("id") int id) {
         if(!proyectoService.existsById(id)){

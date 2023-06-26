@@ -7,6 +7,7 @@ import com.portfolio.ffperezs.service.ExperienciaService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/experiencia")
-@CrossOrigin(origins = {"https://ffperezs.web.app","http://localhost:4200"})
+@CrossOrigin(origins = {"https://Portfolio-ffperezs.web.app","http://localhost:4200"})
 public class ExperienciaController {
 
     private final ExperienciaService experienciaService;
@@ -63,7 +64,7 @@ public class ExperienciaController {
 
     
     //Crear
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Experiencia> addExperiencia(@RequestBody ExperienciaDto experienciaDto) {
         Experiencia newExperiencia = new Experiencia (
@@ -84,7 +85,7 @@ public class ExperienciaController {
 
 
     //Editar
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> editExperiencia(@PathVariable("id") int id, @RequestBody ExperienciaDto experienciaDto){
         //Validamos si existe el ID
@@ -114,7 +115,7 @@ public class ExperienciaController {
     
     //Borrar
     @DeleteMapping("/delete/{id}")
-    //@PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteExperiencia(@PathVariable("id") int id) {
         if(!experienciaService.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
