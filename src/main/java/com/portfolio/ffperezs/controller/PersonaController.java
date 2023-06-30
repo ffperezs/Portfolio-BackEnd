@@ -94,6 +94,7 @@ public class PersonaController {
         persona.setPosicion(personaDto.getPosicion());
         persona.setSobreMi(personaDto.getSobreMi());
         persona.setImg(personaDto.getImg());
+        persona.setBanner(personaDto.getBanner());
         persona.setLinkW(personaDto.getLinkW());
         persona.setLinkE(personaDto.getLinkE());
         
